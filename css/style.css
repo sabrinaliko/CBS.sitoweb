@@ -1,0 +1,495 @@
+/* --- GESTIONE DROPDOWN E "PONTE INVISIBILE" --- */
+
+    @media (max-width: 1028px) {
+        .top-navbar .navbar-nav {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: flex;
+        }
+    }
+    .menu-toggle {
+        display: none;
+    }
+    @media (max-width: 1028px) {
+        .position-absolute.top-50.start-50.translate-middle {
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .custom-dropdown .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        margin-top: 10px;
+
+        border-radius: 4px;
+        border: 1px solid #eaeaea;
+        padding: 10px;
+        min-width: 360px; /* Leggermente allargato per accomodare i nuovi margini */
+
+        column-count: 2;
+        column-gap: 0;
+    }
+
+    .custom-dropdown .dropdown-menu::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background-color: transparent;
+    }
+
+    /* LA FRECCINA A VIGNETTA */
+    .custom-dropdown .dropdown-menu::after {
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: 15px; /* Allineamento sotto il bottone */
+        width: 10px;
+        height: 10px;
+        background-color: #fff;
+        border-top: 1px solid #eaeaea;
+        border-left: 1px solid #eaeaea;
+        transform: rotate(45deg);
+        z-index: 10;
+    }
+
+    .custom-dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #101010;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+header {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Applica un font sans-serif pulito alla navbar come su CBS News */
+.top-navbar {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+}
+
+/* Stili degli elementi del sottomenu */
+.custom-dropdown .dropdown-menu li {
+    break-inside: avoid-column; /* Evita che un elemento venga diviso tra le due colonne */
+}
+
+.custom-dropdown .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 16px 8px 24px;
+    color: #333;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.custom-dropdown .dropdown-item:hover {
+    text-decoration: underline; /* Aggiunge la sottolineatura al passaggio del mouse, tipico dei siti di news */
+}
+
+/* --- HOVER PER LA NAVBAR PRINCIPALE --- */
+.top-navbar .nav-link {
+    border-radius: 5px;
+    padding: 6px 0 !important;
+}
+
+.top-navbar .nav-item:hover .nav-link {
+    background-color: #e9ecef;
+}
+
+/* --- HOVER PER GLI ELEMENTI DEL MENU A TENDINA --- */
+.custom-dropdown .dropdown-item {
+    padding: 6px 0 6px 0; /* Spazio interno per far vedere il riquadro */
+    color: #333;
+    font-size: 0.85rem;
+    border-radius: 5px; /* Bordi arrotondati come in foto */
+}
+
+/* Sostituisce la sottolineatura precedente con lo sfondo grigino */
+.custom-dropdown .dropdown-item:hover {
+    background-color: #e9ecef !important; /* Grigino di sfondo al passaggio del mouse */
+    text-decoration: none; /* Rimuove l'eventuale sottolineatura */
+}
+.sub-nav {
+    border-top: 0.5px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef;
+    background-color: #ffffff;
+
+}
+.top-navbar .nav-link {
+    font-weight: 700 !important; /* 600 è Semi-Bold, 700 è Bold. Molto meglio di 800! */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Font di sistema più moderni e puliti */
+    letter-spacing: -0.2px; /* Avvicina impercettibilmente le lettere, tipico delle testate giornalistiche */
+    -webkit-font-smoothing: antialiased; /* Rende il grassetto molto più nitido su schermi moderni */
+    -moz-osx-font-smoothing: grayscale;
+}
+.sub-nav-list {
+    list-style: none;
+    margin:0;
+    padding: 0;
+    display:flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    padding-left:10px;
+}
+.sub-nav-list li {
+    list-style: none;
+    margin: 0;
+    padding:0;
+
+}
+.sub-nav-link {
+    text-decoration: none;
+    color: #5f6368;
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 6px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.sub-nav-link:hover {
+    color: #111;
+    text-decoration: none;
+    background-color:#e9ecef;
+}
+.sub-nav .container-fluid{
+    padding-left:20px;
+    padding-right:20px;
+}
+.navbar-toggler {
+    border: none;
+}
+.offcanvas.offcanvas-start {
+    width: 80%;
+    max-width: 500px;
+}
+
+.menu-columns {
+    display: flex;
+    gap: 60px;
+}
+
+.menu-columns ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-columns li {
+    margin-bottom: 12px;
+    color: #5f6368;
+    font-size: 15px;
+}
+.menu-toggle{
+    background: none;
+    border: none;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #111111;
+    cursor: pointer;
+}
+
+.menu-grid-icon {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    .menu-toggle {
+        display: flex;
+    }
+}
+.homepage {
+    background-color: #ffffff;
+}
+
+.top-stories {
+    margin-top: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 80px;
+}
+
+.main-story-img {
+    width: 100%;
+    display: block;
+    height: auto;
+    border-radius: 4px;
+}
+
+.live-badge {
+    display: inline-block;
+    margin-top: 14px;
+    margin-bottom: 12px;
+    padding: 4px 8px;
+    background-color: #c93333;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.main-story-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.2rem;
+    line-height: 1.05;
+    font-weight: 700;
+    color: #2b2b2b;
+    margin: 0;
+    text-decoration: none;
+}
+.main-story-title:hover {
+    text-decoration: underline;
+}
+
+.side-story-img {
+    width: 100%;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.side-story {
+    margin-bottom: 28px;
+}
+
+.side-story-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #2b2b2b;
+    margin: 0 0 10px 0;
+}
+
+.side-story-time {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #8a8a8a;
+    margin: 0;
+}
+.footer {
+    background-color: #0b0b0b;
+    color: white;
+    align-items: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer, .footer-content {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    gap:20px;
+    align-items: stretch;
+}
+
+.footer-logo {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 42px;
+}
+
+.copyright {
+    margin-top: 55px;
+    font-size: 13px;
+}
+.footer-nav {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(160px, 1fr));
+    gap: 32px;
+}
+
+.footer-col h4 {
+    margin: 0 0 8px;
+}
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer-col a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.footer-col a:hover {
+    text-decoration: underline;
+}
+
+/* tablet: 3 colonne */
+@media (max-width: 1028px) {
+    .footer-nav {
+        grid-template-columns: repeat(3, minmax(160px, 1fr));
+    }
+}
+
+/* schermi medi: 2 colonne */
+@media (max-width: 700px) {
+    .footer-nav {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+    }
+}
+
+/* telefono: 1 colonna */
+@media (max-width: 480px) {
+    .footer-nav {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 1028px) {
+    .footer-nav {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-nav {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 768px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+        padding: 20px 16px;
+    }
+}
+.offcanvas.offcanvas-start {
+    width: 380px;
+    max-width: 80vw;
+}
+.menu-columns ul {
+    columns: 2;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-columns li {
+    break-inside: avoid;
+    margin-bottom: 18px;
+}
+
+.menu-columns a {
+    color: #101010;
+    text-decoration: none;
+    font-size: 15px;
+}
+.offcanvas.offcanvas-start {
+    width: 380px;
+    max-width: 80vw;
+}
+
+
+.mobile-menu-list li {
+    break-inside: avoid;
+    margin-bottom: 18px;
+}
+
+
+.offcanvas.offcanvas-start {
+    width: 380px;
+    max-width: 80vw;
+}
+
+.offcanvas-header {
+    height: 72px;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 22px;
+}
+
+.offcanvas-title {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.btn-close {
+    order: -1;
+    margin-right: 18px;
+}
+
+.offcanvas-body {
+    padding: 28px 32px;
+}
+
+.offcanvas-body h6 {
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0 0 20px;
+}
+
+.mobile-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 38px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 55px;
+    row-gap: 10px;
+}
+
+.mobile-menu-list a {
+    color: #101010;
+    text-decoration: none;
+    font-size: 14px;
+}
+.mobile-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+
+    column-count: 2;
+    column-gap: 80px;
+}
+
+.mobile-menu-list li {
+    break-inside: avoid;
+    margin-bottom: 8px;
+}
+
+.mobile-menu-list a {
+    color: #101010;
+    text-decoration: none;
+    font-size: 14px; font-size: 13px;       /* 👈 più piccolo */
+    font-weight: 400;      /* 👈 non bold */
+    color: #5f6368;        /* 👈 grigio CBS */
+    line-height: 1.3;
+
+}
