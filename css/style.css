@@ -12,11 +12,17 @@
     .menu-toggle {
         display: none;
     }
+
     @media (max-width: 1028px) {
         .position-absolute.top-50.start-50.translate-middle {
             left: 50%;
             transform: translate(-50%, -50%);
         }
+    }
+/* --- GESTIONE DROPDOWN E "PONTE INVISIBILE" --- */
+@media all and (min-width: 800px) {
+    .custom-dropdown{
+        position: relative;
     }
 
     .custom-dropdown .dropdown-menu {
@@ -29,7 +35,6 @@
         border: 1px solid #eaeaea;
         padding: 10px;
         min-width: 360px; /* Leggermente allargato per accomodare i nuovi margini */
-
         column-count: 2;
         column-gap: 0;
     }
@@ -62,17 +67,18 @@
     .custom-dropdown:hover .dropdown-menu {
         display: block;
     }
-
+}
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #101010;
     font-weight: 400;
     font-size: 16px;
+    padding-top: 70px;
 }
 
 header {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial', serif;
 }
 
 /* Applica un font sans-serif pulito alla navbar come su CBS News */
@@ -123,7 +129,7 @@ header {
     text-decoration: none; /* Rimuove l'eventuale sottolineatura */
 }
 .sub-nav {
-    border-top: 0.5px solid #e9ecef;
+    border-top: 1px solid #e9ecef;
     border-bottom: 1px solid #e9ecef;
     background-color: #ffffff;
 
@@ -138,18 +144,16 @@ header {
 .sub-nav-list {
     list-style: none;
     margin:0;
-    padding: 0;
     display:flex;
     align-items: center;
     gap: 15px;
     flex-wrap: nowrap;
-    padding-left:10px;
+    padding: 0 0 0 10px;
 }
 .sub-nav-list li {
     list-style: none;
     margin: 0;
     padding:0;
-
 }
 .sub-nav-link {
     text-decoration: none;
@@ -200,12 +204,12 @@ header {
     padding: 0;
     width: 32px;
     height: 32px;
-
     align-items: center;
     justify-content: center;
-
     color: #111111;
     cursor: pointer;
+    display: none
+;
 }
 
 .menu-grid-icon {
@@ -213,24 +217,14 @@ header {
     height: 22px;
     fill: currentColor;
 }
-.menu-toggle {
-    display: none;
-}
 
-@media (max-width: 991.98px) {
-    .menu-toggle {
-        display: flex;
-    }
-}
 .homepage {
     background-color: #ffffff;
 }
 
 .top-stories {
-    margin-top: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
+    margin-top: 5px;
+    padding: 0;
 }
 
 .news-grid {
@@ -240,7 +234,7 @@ header {
     align-items: start;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 80px;
+    padding: 40px 0px;
 }
 
 .main-story-img {
@@ -255,7 +249,7 @@ header {
     margin-top: 14px;
     margin-bottom: 12px;
     padding: 4px 8px;
-    background-color: #c93333;
+    background-color: #E10500;
     color: white;
     font-size: 12px;
     font-weight: 700;
@@ -263,18 +257,6 @@ header {
     letter-spacing: 0.5px;
 }
 
-.main-story-title {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 2.2rem;
-    line-height: 1.05;
-    font-weight: 700;
-    color: #2b2b2b;
-    margin: 0;
-    text-decoration: none;
-}
-.main-story-title:hover {
-    text-decoration: underline;
-}
 
 .side-story-img {
     width: 100%;
@@ -288,112 +270,116 @@ header {
 
 .side-story-title {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.1rem;
-    line-height: 1.2;
-    font-weight: 700;
+    font-size: 25px;
+    line-height: 1.05;
+    font-weight:800;
     color: #2b2b2b;
     margin: 0 0 10px 0;
 }
 
 .side-story-time {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    font-size: 13px;
+    letter-spacing: 1.4px;
     color: #8a8a8a;
     margin: 0;
 }
+.more:hover {
+    text-decoration: underline;
+    color: #666666;
+}
+
+
+/* --- FOOTER CBS NEWS --- */
+
 .footer {
-    background-color: #0b0b0b;
+    background-color: #101010;
     color: white;
-    align-items: center;
+    padding: 35px 40px 35px 35px; /* Più respiro sopra e sotto */
+    font-family: Arial, Helvetica, sans-serif; /* Font simile a quello di CBS */
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 1050px; /* Leggermente più stretto per raggruppare meglio le colonne */
     margin: 0 auto;
-}
-.footer, .footer-content {
     display: flex;
-    padding: 20px;
     flex-direction: column;
-    gap:20px;
-    align-items: stretch;
 }
 
 .footer-logo {
     text-align: center;
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 42px;
+    margin-bottom: 25px;
 }
 
-.copyright {
-    margin-top: 55px;
-    font-size: 13px;
+.footer-logo h2 {
+    font-size: 35px; /* Più proporzionato rispetto a prima */
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.5px;
 }
+
 .footer-nav {
     display: grid;
-    grid-template-columns: repeat(5, minmax(160px, 1fr));
-    gap: 32px;
+    /* Usa 1fr in modo che le colonne si dividano lo spazio equamente senza forzature */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
 }
 
-.footer-col h4 {
-    margin: 0 0 8px;
-}
 .footer-col {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 9px; /* Spazio esatto tra un link e l'altro */
 }
+
+.footer-col h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px; /* Titoli delle colonne più piccoli */
+    font-weight: 700;
+}
+
 .footer-col a {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    display: block;
+    font-size: 14px; /* Link più piccoli e raffinati */
+    line-height: 1.2;
 }
 
 .footer-col a:hover {
     text-decoration: underline;
 }
 
-/* tablet: 3 colonne */
-@media (max-width: 1028px) {
-    .footer-nav {
-        grid-template-columns: repeat(3, minmax(160px, 1fr));
-    }
+.copyright {
+    margin-top: 70px;
+    font-size: 13px;
+    color: #d1d1d1; /* Leggermente grigio come nell'originale */
 }
 
-/* schermi medi: 2 colonne */
-@media (max-width: 700px) {
-    .footer-nav {
-        grid-template-columns: repeat(2, minmax(140px, 1fr));
-    }
-}
+/* --- RESPONSIVE (Manteniamo le tue ottime media queries) --- */
 
-/* telefono: 1 colonna */
-@media (max-width: 480px) {
-    .footer-nav {
-        grid-template-columns: 1fr;
-    }
-}
 @media (max-width: 1028px) {
     .footer-nav {
         grid-template-columns: repeat(3, 1fr);
+        gap: 40px; /* Più spazio verticale quando si incolonnano */
     }
 }
 
 @media (max-width: 768px) {
     .footer-nav {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
+
+@media (max-width: 480px) {
+    .footer-nav {
+        grid-template-columns: 1fr;
+        text-align: center; /* Al centro sui telefoni è più bello */
+    }
+}
+
 @media (max-width: 768px) {
     .news-grid {
         grid-template-columns: 1fr;
         padding: 20px 16px;
     }
-}
-.offcanvas.offcanvas-start {
-    width: 380px;
-    max-width: 80vw;
 }
 .menu-columns ul {
     columns: 2;
@@ -412,21 +398,10 @@ header {
     text-decoration: none;
     font-size: 15px;
 }
-.offcanvas.offcanvas-start {
-    width: 380px;
-    max-width: 80vw;
-}
-
 
 .mobile-menu-list li {
     break-inside: avoid;
     margin-bottom: 18px;
-}
-
-
-.offcanvas.offcanvas-start {
-    width: 380px;
-    max-width: 80vw;
 }
 
 .offcanvas-header {
@@ -458,25 +433,12 @@ header {
 .mobile-menu-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 38px;
+    margin: 0 0 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 55px;
-    row-gap: 10px;
-}
-
-.mobile-menu-list a {
-    color: #101010;
-    text-decoration: none;
-    font-size: 14px;
-}
-.mobile-menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 24px;
-
-    column-count: 2;
     column-gap: 80px;
+    row-gap: 10px;
+    column-count: 2;
 }
 
 .mobile-menu-list li {
@@ -485,11 +447,1033 @@ header {
 }
 
 .mobile-menu-list a {
-    color: #101010;
     text-decoration: none;
-    font-size: 14px; font-size: 13px;       /* 👈 più piccolo */
+    font-size: 13px;       /* 👈 più piccolo */
     font-weight: 400;      /* 👈 non bold */
     color: #5f6368;        /* 👈 grigio CBS */
     line-height: 1.3;
 
+}
+.topic-section {
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.section-title {
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #000;
+    margin-bottom: 0;
+}
+
+.more{
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.more:hover {
+    text-decoration: underline;
+    color: #666;
+}
+
+.story-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.story-img {
+    margin: 12px 0;
+    width: 100%;
+}
+
+.story-text {
+    font-size: 20px;
+    line-height: 1.25;
+}
+
+.story-time {
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.story-img-side {
+    object-fit: cover;
+    flex-shrink: 0;
+    width: 120px; /* Fissa la larghezza dell'immagine (puoi aumentarla a 140px se preferisci) */
+    height: auto;
+}
+
+.story-card-side {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.story-text-box {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.story-card {
+    text-decoration: none;
+}
+.story-link {
+    gap: 16px;
+    align-items: flex-start;
+    text-decoration: none;   /* ❌ niente underline globale */
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+/* 🔥 SOLO il titolo si sottolinea */
+.story-link:hover .story-title {
+    text-decoration: underline;
+}
+
+.page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;      /* centra tutto */
+    padding-left: 80px;     /* spazio a sinistra e destra */
+    padding-right: 80px;
+}
+/* --- TYPOGRAPHY GLOBALE DELLA SEZIONE --- */
+.section-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* --- MAIN STORY (Colonna di sinistra) --- */
+.main-story-img {
+    object-fit: cover;
+    aspect-ratio: 4 / 3; /* Mantiene proporzioni coerenti per le due immagini grandi */
+}
+
+.main-story-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    font-weight: bold;
+}
+
+/* --- SIDE STORIES (Colonna di destra) --- */
+.side-story-img {
+    object-fit: cover;
+    aspect-ratio: 1 / 1; /* Rende le miniature laterali perfettamente quadrate */
+}
+
+.side-story-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+
+.side-story-title a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Classe specifica per replicare la sottolineatura di default del primo articolo */
+.side-story-title a.underlined-link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.side-story-time {
+    color: #6c757d; /* Grigio secondario */
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: auto; /* Spinge l'orario in fondo al contenitore flex */
+    margin-bottom: 0;
+}
+/* --- MAIN STORY (Colonna di sinistra) --- */
+/* Aggiunge una transizione fluida per il cambio colore */
+
+
+/* Effetto quando passi il mouse (:hover) e quando clicchi (:active) */
+.main-story-title a:hover,
+.main-story-title a:active {
+    color: #777777; /* Grigio più chiaro */
+    text-decoration: underline;
+}
+
+/* Effetto quando passi il mouse (:hover) e quando clicchi (:active) */
+.side-story-title a:hover,
+.side-story-title a:active {
+    color: #777777; /* Grigio più chiaro */
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* --- BOTTOM SECTION (Notizie a 3 colonne) --- */
+.article-img-bottom {
+    object-fit: cover;
+    aspect-ratio: 16 / 9; /* Proporzione rettangolare tipica dei video/foto landscape */
+}
+
+.story-title-bottom {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.story-title-bottom a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.story-title-bottom a:hover,
+.story-title-bottom a:active {
+    color: #777777; /* Effetto grigio al click/hover impostato prima */
+    text-decoration: underline;
+}
+
+.story-title-bottom a.underlined-link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.story-time-bottom {
+    color: #6c757d;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+/* --- FIX PER IL LINK BLU DI DEFAULT --- */
+.story-link-wrapper {
+    text-decoration: none; /* Rimuove la sottolineatura blu */
+    color: #000; /* Forza il colore nero per tutto il blocco */
+}
+
+/* --- MAIN STORY (Colonna di sinistra) --- */
+.main-story-img {
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    width: 100%; /* Assicura che l'immagine prenda tutto lo spazio */
+}
+
+.main-story-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    font-weight: bold;
+    color: #000;
+    transition: color 0.2s ease;
+}
+
+/* --- SIDE STORIES (Colonna di destra) --- */
+.side-story-img {
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.side-story-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #000;
+    transition: color 0.2s ease;
+}
+
+
+
+.side-story-time {
+    color: #6c757d;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: auto;
+    margin-bottom: 0;
+}
+/* 1. Rimuove il blu e la sottolineatura di default da tutti i link degli articoli */
+a.side-story-link {
+    text-decoration: none;
+    color: #000; /* Imposta il testo nero come base */
+}
+
+/* 2. Assicura che i titoli abbiano una transizione fluida del colore */
+.main-story-title,
+.side-story-title,
+.story-title-bottom {
+    transition: color 0.2s ease;
+}
+
+/* 3. Quando passi il mouse sull'articolo (il link), il titolo diventa grigio e si sottolinea */
+a.side-story-link:hover .main-story-title,
+a.side-story-link:active .main-story-title,
+a.side-story-link:hover .side-story-title,
+a.side-story-link:active .side-story-title,
+a.side-story-link:hover .story-title-bottom,
+a.side-story-link:active .story-title-bottom {
+    color: #777777;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* --- REGOLAZIONE SPAZIO TRA LE SEZIONI --- */
+
+/* --- FIX PER LO SPAZIO IMMENSO TRA LE SEZIONI --- */
+
+/* 1. Togliamo l'enorme spinta verso il basso della prima sezione */
+section.top-stories {
+    margin-bottom: 5rem !important;
+}
+
+/* 2. Togliamo l'enorme spinta verso l'alto della sezione successiva */
+section.top-stories + section.container {
+    margin-top: 0 !important;
+}
+/* --- FIX PER IL VUOTO IMMENSO A SINISTRA --- */
+
+/* 1. Forza il contenitore dell'immagine principale (quel col-6) a prendere il 100% della larghezza */
+.main-story .col-6 {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+
+/* 2. Applica lo stile all'immagine principale anche se nel HTML il tag class="" è vuoto */
+.main-story img {
+    width: 100% !important;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+}
+
+/* --- ADVERTISEMENT (Pubblicità Calliope) --- */
+.ad-container {
+    background-color: #fff;
+    border-color: #e0e0e0 !important; /* Bordo grigio molto chiaro */
+}
+
+/* Stile per i piccoli badge rosa dello sconto */
+.badge-discount {
+    background-color: #ffe6eb; /* Rosa chiarissimo */
+    color: #d1004b; /* Testo fucsia/rosso */
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 0; /* Rimuove gli angoli arrotondati di default di Bootstrap */
+    padding: 0.25em 0.4em;
+}
+
+/* Stile per il logo testuale */
+.brand-logo {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 0.3em; /* Crea quello spazio ampio tra le lettere */
+}
+/* --- BOTTOM SECTION (Notizie a 3 colonne) --- */
+
+.story-title-bottom a {
+    color: #000; /* Testo nero di base */
+    text-decoration: none; /* Nessuna sottolineatura di base */
+    transition: color 0.2s ease; /* Transizione fluida */
+}
+
+/* Effetto al passaggio del mouse e al click */
+.story-title-bottom a:hover,
+.story-title-bottom a:active {
+    color: #777777; /* Diventa grigio chiaro */
+    text-decoration: none; /* Nessuna sottolineatura nemmeno al passaggio del mouse */
+}
+
+/* Puoi eliminare del tutto la regola .story-title-bottom a.underlined-link dal CSS */
+/* --- GO DEEPER SECTION (Fascia Blu) --- */
+
+
+.go-deeper-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 3rem; /* Molto grande, come nello screen */
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+/* --- GO DEEPER SECTION (Fascia Blu a tutta larghezza) --- */
+.go-deeper-section {
+    background-color: #005699; /* Il blu scuro */
+    color: white; /* Testo bianco */
+    width: 100%; /* Prende naturalmente tutto lo spazio disponibile */
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* Regole per il titolo-link */
+.all-section{
+    color: #ffffff; /* Forza il link a essere bianco e non blu! */
+    text-decoration: none; /* Niente sottolineatura */
+    transition: opacity 0.2s ease;
+}
+
+/* Effetto interattivo: quando passi il mouse su TUTTA la colonna (.fp-card),
+   il titolo si "spegne" leggermente per far capire che è cliccabile */
+
+.fp-title:hover{
+    text-decoration: underline;
+    color: rgb(255, 255,255, 0.85);
+}
+.fp-title{
+    font-family: "Georgia", "Times New Roman", serif;
+    font-weight: bold;
+}
+
+/* Stili extra per i testi (mantengono il bianco ereditato dalla sezione) */
+.fp-brand {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+}
+
+.fp-desc {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.fp-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.8; /* Rende la data un po' più tenue */
+    margin-bottom: 0;
+    color: #ffffff;
+}
+/* Il titolo di base è bianco e senza sottolineatura */
+
+/* Al passaggio del mouse appare la sottolineatura, ma il colore resta bianco solido */
+.fp-card:hover .fp-title a,
+.fp-title a:hover {
+    color: #ffffff !important;
+    opacity: 1; /* Rimuove l'effetto trasparenza */
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+}
+
+/* Spazio tra il titolo grande e le immagini */
+
+/* Opzionale: aggiungi spazio sotto il titolo principale */
+/* Rimpicciolisce le immagini nella sezione Go Deeper */
+.go-deeper-section .fp-card img {
+    width: 100% !important; /* Più abbassi questa %, più le foto diventano piccole */
+    height: auto;
+    margin: 0 auto 15px auto; /* Lo zero e 'auto' ai lati servono a centrarla */
+    display: block; /* Necessario per far funzionare il centraggio con margin auto */
+    border-radius: 4px; /* Un leggero arrotondamento come sull'originale */
+}
+/* Questo allinea immagine e testo insieme */
+.go-deeper-section .fp-card {
+    padding-left: 25px;   /* Aumenta questo valore per rimpicciolire tutto il blocco */
+    padding-right: 25px;  /* Deve essere uguale a quello sopra */
+    display: flex;
+    flex-direction: column;
+    text-align: left;     /* Mantiene il testo allineato a sinistra */
+}
+
+/* Rendi l'immagine fluida ma allineata al testo */
+/* 1. Stringiamo il contenitore generale (così la sezione è meno "gigante") */
+.go-deeper-section .container {
+    max-width: 1050px !important;
+}
+
+/* 2. Gestiamo la colonna dell'articolo come un blocco unico */
+.fp-card {
+    /* Più aumenti questi due numeri, più foto e testo si restringono INSIEME */
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Tutto allineato a sinistra */
+}
+
+/* 3. L'immagine ora segue la larghezza della colonna */
+
+
+/* 4. Togliamo margini strani al testo per sicurezza */
+.fp-brand, .fp-title, .fp-desc {
+    margin-left: 0 !important;
+    width: 100%;
+}
+/* Sezione Verde "Managing Your Money" */
+.managing-money-section {
+    background-color: #00711A; /* Il verde esatto dello screenshot */
+    color: white;
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Titolo della sezione con il link "More" */
+.section-header-green {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.section-header-green h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.section-header-green a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Card interna alla sezione verde */
+.green-card {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.green-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    /* Nello screenshot le foto sono rettangolari e pulite */
+}
+
+.green-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.green-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: 0.9; /* Il testo descrittivo è leggermente meno brillante del titolo */
+}
+/* Titoli delle categorie (U.S., MoneyWatch, ecc) */
+.column-category {
+    font-family: 'Georgia', serif; /* O il font serif che stai usando */
+    font-weight: 900;
+    font-size: 1.6rem;
+    margin-bottom : 15px;
+}
+
+/* Articolo principale con foto */
+.main-article img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    display: block;
+    object-fit: cover; /* Assicura che l'immagine non si deformi se viene allargata */
+    }
+
+.main-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+/* Lista dei titoletti sotto */
+.sub-article-list {
+    list-style: none; /* Toglie i pallini */
+    padding:0;
+    text-align: justify;
+}
+
+.sub-article-list li {
+    padding: 12px 0;
+}
+
+.sub-article-list li a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    display: block;
+}
+
+.sub-article-list li a:hover {
+    text-decoration: underline;
+    color: #777777;
+}
+.news-column {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+/*=============================== SEZIONE THE WEEK IN POLITICS ===============================*/
+/* --- INTESTAZIONE SEZIONE --- */
+/*============================================================================================*/
+
+
+/*=============== Spazio vuoto in sostituzione alla pubblicità ===============*/
+.adv-spacer {
+    height: 10rem;
+}
+/*============================================================================*/
+
+
+/* Applica il colore bianco ai link SOLO dentro la sezione verde */
+.managing-money-section a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.managing-money-section a:hover {
+    text-decoration: underline;
+}
+.section-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.more-link {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+/* Immagini Articoli */
+.article-img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+
+/* Badge Sponsorizzato */
+.sponsored-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.article-desc a{
+    font-size: 1.05rem;
+    line-height: 1.4;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
+/* Timestamp e Link Correlati */
+.timestamp {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+}
+
+.related-link {
+    font-size: 1.05rem;
+    font-weight: bold;
+    line-height: 1.3;
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+}
+/* Colore di base per i link dei titoli: un bianco leggermente opaco */
+.article-title a {
+    color: #ffffff; /* Bianco all'85% di opacità */
+    text-decoration: none; /* Nessuna sottolineatura di base */
+    transition: color 0.2s ease; /* Transizione fluida del colore */
+}
+
+/* Quando passi il mouse sopra al titolo (HOVER) */
+.article-title a:hover {
+    color: rgba(255, 255, 255, 0.85); /* Diventa bianco puro (più chiaro) */
+    text-decoration: underline; /* Compare la sottolineatura */
+    text-decoration-thickness: 2px; /* Opzionale: rende la riga un po' più marcata */
+    text-underline-offset: 4px; /* Opzionale: distanzia la riga dal testo */
+}
+
+/* Quando clicchi fisicamente sul titolo (ACTIVE) */
+.article-title a:active {
+    color: #ffffff; /* Rimane bianco puro durante il click */
+}
+
+.more-link{
+    color: #ffffff;
+}
+.more-link:hover {
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.85);
+}
+/* Contenitore principale della sezione Video */
+.top-videos-section {
+    background-color: #121212; /* Sfondo nero/grigio molto scuro */
+    color: #ffffff; /* Testo bianco */
+    font-family: Arial, sans-serif;
+}
+
+/* Titolo "Top Videos" in Serif */
+.top-videos-section .top-videos-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+/* Badge rosso "LIVE" */
+.top-videos-section .live-badge {
+    background-color: #c00E00; /* Rosso acceso */
+    color: #ffffff;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 2px;
+}
+
+/* Sottotitolo del canale */
+.top-videos-section .channel-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Testo descrittivo */
+.top-videos-section .video-desc {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9); /* Bianco leggermente più morbido */
+}
+
+/* Stile per il finto player video */
+.video-player-mockup {
+    border: 1px solid #333; /* Bordo leggero per separarlo dallo sfondo */
+    background-color: #000;
+}
+
+/* Sfumatura nera in basso al player per far leggere bene il testo in sovraimpressione */
+.overlay-gradient {
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+}
+
+.video-live-indicator {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+.thumbnail-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1.2;
+    text-decoration: none;
+}
+.thumbnail-title:hover {
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.thumbnail-desc {
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #cccccc;
+}
+
+
+/* Font personalizzato per il titolo principale */
+.font-serif {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* Stile per l'overlay del pulsante play sul video */
+.play-button-overlay {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: background-color 0.3s;
+}
+
+.play-button-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+/* Triangolo del pulsante play */
+.play-triangle {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 18px solid white;
+    margin-left: 6px; /* Centra visivamente il triangolo */
+}
+
+/* Ombreggiatura per rendere il testo leggibile sopra le immagini */
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+.video-title:hover{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+.video-meta{
+    font-size: 12px;
+}
+.channel-title{
+    color:#ffffff;
+    font-family: "Publico Text", serif;
+}
+.channel-title:hover {
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.article-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.article-link:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- STILI SEZIONE PROMOTED LINKS --- */
+
+/* Applica un font "grazie" (serif) ai titoli per renderli identici all'immagine */
+.promoted-card .promoted-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.4rem;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+}
+
+/* Stile per la scritta minuscola della fonte (es. MEDICINA-NATURALE.IT) */
+.promoted-card .source-text {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Stile per i bottoni "Scopri di più" */
+.promoted-card .cta-btn {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-color: #000;
+    color: #000;
+}
+
+.promoted-card .cta-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+/* --- EFFETTO HOVER TITOLI --- */
+.promoted-card:hover .hover-underline {
+    text-decoration: underline !important;
+}
+/* Stile di base: un bianco leggermente trasparente (smorzato) */
+.more-link {
+    color:#ffffff !important;
+    transition: all 0.2s ease-in-out; /* Rende la transizione morbida */
+}
+.more-link:hover {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+/* --- BOTTONI IN ALTO --- */
+.btn-live {
+    background-color: #cc0000; /* Rosso CBS */
+    border: 1px solid #cc0000;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    border-radius: 4px 0 0 4px !important; /* Arrotonda solo a sinistra */
+}
+
+.btn-live:hover {
+    background-color: #a80000;
+    color: white;
+}
+
+.live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%; /* Crea il pallino */
+}
+
+.btn-local {
+    border: 1px solid #dee2e6;
+    color: #333;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-radius: 0 4px 4px 0 !important; /* Arrotonda solo a destra */
+}
+
+.btn-local:hover {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* --- CARD DEI CANALI (BLU) --- */
+
+
+.channel-info {
+    flex: 1; /* Il testo prende tutto lo spazio rimanente */
+}
+.channel-card {
+    background-color: #0071ce;
+    border-radius: 5px;
+    height: 65px; /* Altezza fissa ridotta */
+    overflow: hidden;
+}
+
+.channel-logo {
+    flex: 0 0 30%; /* Ancora meno spazio al logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.channel-divider {
+    width: 1px;
+    height: 35px; /* Linea più corta */
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 10px;
+}
+
+.channel-text {
+    margin-bottom: 0;
+    font-size: 0.75rem; /* Font più piccolo per il testo lungo */
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase; /* Spesso in questi layout è tutto maiuscolo */
+}
+.channel-card {
+    background-color: #0071ce;
+    border-radius: 4px;
+    height: 60px; /* L'altezza può restare fissa per uniformità */
+    width: 100%;  /* Occupa tutto lo spazio della colonna assegnata */
+    max-width: 220px; /* Ma su desktop non superare mai i 200px */
+    /* Centra il box nella sua colonna su mobile */
+    overflow: hidden;
+}
+
+/* Su mobile (sotto i 576px) possiamo rimpicciolire un po' il font */
+@media (max-width: 576px) {
+    .channel-text {
+        font-size: 9px !important;
+    }
+    .channel-card {
+        height: 50px; /* Più sottili su mobile */
+    }
+}
+<!-- sezione money -->
+/* =========================================
+   SEZIONE NOTIZIE FINANZA (Stile CBS)
+   ========================================= */
+
+/* --- INTESTAZIONE (MoneyWatch e More) --- */
+.titolo-categoria-finanza {
+    font-family: 'Georgia', serif; /* Font elegante con le grazie */
+    font-weight: 900;
+    letter-spacing: -1px; /* Stringe leggermente le lettere */
+    color: #000;
+}
+
+.link-vedi-tutto {
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.link-vedi-tutto:hover {
+    color: #555;
+    text-decoration: underline; /* Evitiamo la sottolineatura base */
+}
+
+/* --- IL CONTENITORE CLICCABILE (Magia dell'hover) --- */
+.collegamento-articolo-intero {
+    text-decoration: none !important; /* Rimuove sottolineature blu di default */
+    color: #000 !important;
+    display: block; /* Rende cliccabile tutta l'area, foto compresa */
+}
+
+/* --- I TITOLI DEGLI ARTICOLI --- */
+
+/* Titolo Gigante (Sinistra) */
+.titolo-copertina {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.1; /* Testo bello compatto */
+    margin-bottom: 12px;
+    color: #000;
+}
+
+/* Titoli Medi (Sotto e a Destra) */
+.titolo-griglia,
+.titolo-laterale {
+    font-family: 'Georgia', serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+/* --- L'EFFETTO SOTTOLINEATURA GRIGIA (Solo sui titoli) --- */
+/* Quando passi o clicchi su un punto qualsiasi dell'articolo, il titolo si sottolinea */
+.collegamento-articolo-intero:hover .titolo-copertina,
+.collegamento-articolo-intero:hover .titolo-griglia,
+.collegamento-articolo-intero:hover .titolo-laterale,
+.collegamento-articolo-intero:active .titolo-copertina,
+.collegamento-articolo-intero:active .titolo-griglia,
+.collegamento-articolo-intero:active .titolo-laterale {
+    text-decoration: underline;
+    text-decoration-thickness: 3px; /* Spessore della riga */
+    text-decoration-color: #b5b5b5; /* Grigio CBS */
+    text-underline-offset: 4px; /* Distanza della riga dal testo */
+}
+
+/* --- ETICHETTA DEL TEMPO (es. 16H AGO) --- */
+.etichetta-tempo {
+    font-family: sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: block;
 }
