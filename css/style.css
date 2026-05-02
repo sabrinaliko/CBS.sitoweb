@@ -526,13 +526,13 @@ nav a {
 .story-link {
     gap: 16px;
     align-items: flex-start;
-    text-decoration: none;   /* ❌ niente underline globale */
+    text-decoration: none;   /* niente underline globale */
     color: inherit;
     display: block;
     height: 100%;
 }
 
-/* 🔥 SOLO il titolo si sottolinea */
+/* SOLO il titolo si sottolinea */
 .story-link:hover .story-title {
     text-decoration: underline;
 }
@@ -790,8 +790,6 @@ section.top-stories + section.container {
     background-color: #005699;
     color: white;
     width: 100%;
-    padding-top: 50px; /* Aumentato leggermente per dare più respiro */
-    padding-bottom: 50px;
 }
 
 /* Titolo della sezione */
@@ -805,6 +803,10 @@ section.top-stories + section.container {
 
 /* Limitiamo la larghezza massima del container per renderlo più compatto */
 .go-deeper-section .container {
+    max-width: 1050px !important;
+}
+
+.manage-section .container {
     max-width: 1050px !important;
 }
 
@@ -986,6 +988,85 @@ section.top-stories + section.container {
     font-weight: 800;
     line-height: 1.3;
     margin-bottom: 20px;
+}
+
+/* --- STILI BASE (DESKTOP) --- */
+
+/* Rimuove i pallini della lista e i margini predefiniti */
+.sub-article-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+/* Spazio tra le notizie e formattazione link */
+.sub-article-list li {
+    margin-bottom: 15px;
+}
+
+.sub-article-link {
+    text-decoration: none;
+    color: #000; /* Testo nero come da screenshot */
+    display: block; /* Importante per far cliccare tutta l'area */
+}
+
+/* Titolo della notizia in grassetto */
+.sub-article-title {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+/* Hover effect */
+.sub-article-link:hover .sub-article-title {
+    text-decoration: underline;
+}
+
+/* LA REGOLA FONDAMENTALE: Nasconde date e miniature su desktop */
+.mobile-extra {
+    display: none;
+}
+
+
+/* --- COMPORTAMENTO MOBILE (Sotto i 768px) --- */
+@media (max-width: 767px) {
+
+    /* Il link diventa un contenitore Flex: Testo a sinistra, Foto a destra */
+    .sub-article-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 15px; /* Spazio tra testo e foto */
+    }
+
+    /* Mostriamo gli elementi precedentemente nascosti! */
+    .mobile-extra {
+        display: block;
+    }
+
+    /* Il contenitore del testo prende tutto lo spazio rimasto */
+    .sub-article-text-wrap {
+        flex: 1;
+        display: flex;
+        flex-direction: column; /* Impila titolo e data */
+    }
+
+    /* Formattazione della data */
+    .sub-article-date {
+        font-size: 0.75rem;
+        color: #666;
+        margin-top: 8px; /* Spazio sotto il titolo */
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Formattazione della foto miniatura */
+    .sub-article-thumb {
+        width: 100px;  /* Larghezza foto */
+        height: 100px; /* Altezza foto */
+        object-fit: cover; /* Taglia la foto quadrata senza deformarla */
+        flex-shrink: 0; /* Impedisce alla foto di farsi schiacciare dal testo */
+    }
 }
 
 /* Lista dei titoletti sotto */
@@ -1501,18 +1582,6 @@ a.article-desc .timestamp:hover{
 a.article-title{
     margin-top:0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 .logo span {
     font-size: clamp(1.1rem, 2.2vw, 1.6rem) !important;
