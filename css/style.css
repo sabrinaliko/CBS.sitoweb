@@ -784,46 +784,55 @@ section.top-stories + section.container {
     text-decoration: none; /* Nessuna sottolineatura nemmeno al passaggio del mouse */
 }
 
-/* Puoi eliminare del tutto la regola .story-title-bottom a.underlined-link dal CSS */
-/* --- GO DEEPER SECTION (Fascia Blu) --- */
+/* --- GO DEEPER SECTION (Fascia Blu a tutta larghezza) --- */
+/* --- GO DEEPER SECTION (Fascia Blu a tutta larghezza) --- */
+.go-deeper-section {
+    background-color: #005699;
+    color: white;
+    width: 100%;
+    padding-top: 50px; /* Aumentato leggermente per dare più respiro */
+    padding-bottom: 50px;
+}
 
-
+/* Titolo della sezione */
 .go-deeper-title {
     font-family: "Georgia", "Times New Roman", serif;
-    font-size: 3rem; /* Molto grande, come nello screen */
+    font-size: 3rem;
     font-weight: bold;
     line-height: 1.1;
     margin-bottom: 2rem;
 }
-/* --- GO DEEPER SECTION (Fascia Blu a tutta larghezza) --- */
-.go-deeper-section {
-    background-color: #005699; /* Il blu scuro */
-    color: white; /* Testo bianco */
-    width: 100%; /* Prende naturalmente tutto lo spazio disponibile */
-    padding-top: 30px;
-    padding-bottom: 30px;
+
+/* Limitiamo la larghezza massima del container per renderlo più compatto */
+.go-deeper-section .container {
+    max-width: 1050px !important;
 }
 
-/* Regole per il titolo-link */
-.all-section{
-    color: #ffffff; /* Forza il link a essere bianco e non blu! */
-    text-decoration: none; /* Niente sottolineatura */
+/* --- IL MOTORE DELLA GRIGLIA --- */
+.go-deeper-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali su desktop */
+    gap: 40px; /* Spazio vuoto tra le colonne */
+}
+
+/* --- I SINGOLI ARTICOLI --- */
+.all-section {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column; /* Permette alla data di spingersi in basso usando mt-auto */
+    height: 100%; /* Occupa tutta l'altezza della cella */
     transition: opacity 0.2s ease;
 }
 
-/* Effetto interattivo: quando passi il mouse su TUTTA la colonna (.fp-card),
-   il titolo si "spegne" leggermente per far capire che è cliccabile */
-
-.fp-title:hover{
-    text-decoration: underline;
-    color: rgb(255, 255,255, 0.85);
-}
-.fp-title{
-    font-family: "Georgia", "Times New Roman", serif;
-    font-weight: bold;
+/* REGOLE FONDAMENTALI PER L'IMMAGINE (Evitano le sovrapposizioni) */
+.all-section img {
+    width: 100%; /* Prende tutto lo spazio orizzontale della sua colonna */
+    height: auto; /* Mantiene le proporzioni */
+    object-fit: cover;
 }
 
-/* Stili extra per i testi (mantengono il bianco ereditato dalla sezione) */
+/* Stili del testo */
 .fp-brand {
     font-family: Arial, sans-serif;
     font-size: 0.85rem;
@@ -831,10 +840,17 @@ section.top-stories + section.container {
     color: #ffffff;
 }
 
+.fp-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
 .fp-desc {
     font-size: 1rem;
     line-height: 1.4;
-    margin-bottom: 0.5rem;
+    margin-bottom: 15px;
     color: #ffffff;
 }
 
@@ -842,79 +858,59 @@ section.top-stories + section.container {
     font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    opacity: 0.8; /* Rende la data un po' più tenue */
+    opacity: 0.8;
     margin-bottom: 0;
     color: #ffffff;
-    margin-top:0 !important;
+    margin-top: auto; /* Spinge la data sempre sul fondo della card */
 }
-/* Il titolo di base è bianco e senza sottolineatura */
 
-/* Al passaggio del mouse appare la sottolineatura, ma il colore resta bianco solido */
-.fp-card:hover .fp-title a,
-.fp-title a:hover {
-    color: #ffffff !important;
-    opacity: 1; /* Rimuove l'effetto trasparenza */
-    text-decoration: underline !important;
+/* --- EFFETTI HOVER (Interattività) --- */
+
+/* Quando passi il mouse su un qualsiasi punto dell'articolo... */
+.all-section:hover .fp-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: rgba(255, 255, 255, 0.85); /* Leggera trasparenza */
+}
+
+/* Sottolineatura istantanea al click */
+.all-section:active .fp-title {
+    text-decoration: underline;
     text-underline-offset: 3px;
 }
 
-/* Spazio tra il titolo grande e le immagini */
-
-/* Opzionale: aggiungi spazio sotto il titolo principale */
-/* Rimpicciolisce le immagini nella sezione Go Deeper */
-.go-deeper-section .fp-card img {
-    width: 100% !important; /* Più abbassi questa %, più le foto diventano piccole */
-    height: auto;
-    margin: 0 auto 15px auto; /* Lo zero e 'auto' ai lati servono a centrarla */
-    display: block; /* Necessario per far funzionare il centraggio con margin auto */
-    border-radius: 4px; /* Un leggero arrotondamento come sull'originale */
-}
-/* Questo allinea immagine e testo insieme */
-.go-deeper-section .fp-card {
-    padding-left: 25px;   /* Aumenta questo valore per rimpicciolire tutto il blocco */
-    padding-right: 25px;  /* Deve essere uguale a quello sopra */
-    display: flex;
-    flex-direction: column;
-    text-align: left;     /* Mantiene il testo allineato a sinistra */
+/* SOGLIA INTERMEDIA: Quando lo schermo diventa un po' più piccolo,
+   facciamo fare un "salto" dimensionale alle immagini (es. a 260px) */
+@media (max-width: 1000px) {
+    .go-deeper-grid {
+        grid-template-columns: repeat(3, 260px);
+        gap: 20px;
+    }
 }
 
-/* Rendi l'immagine fluida ma allineata al testo */
-/* 1. Stringiamo il contenitore generale (così la sezione è meno "gigante") */
-.go-deeper-section .container {
-    max-width: 1050px !important;
+@media (max-width: 900px) {
+    .go-deeper-grid {
+        grid-template-columns: repeat(3, 220px);
+        gap: 20px;
+    }
+
+    .fp-desc {
+        display: none;
+    }
 }
 
-/* 2. Gestiamo la colonna dell'articolo come un blocco unico */
-.fp-card {
-    /* Più aumenti questi due numeri, più foto e testo si restringono INSIEME */
-    padding-left: 30px !important;
-    padding-right: 30px !important;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Tutto allineato a sinistra */
+/* --- RESPONSIVE MOBILE (Sotto i 768px) --- */
+@media (max-width: 767px) {
+    .go-deeper-title {
+        font-size: 1.6rem;
+    }
+
+    .go-deeper-grid {
+        grid-template-columns: 1fr; /* Distrugge le 3 colonne, impila tutto in 1 singola colonna */
+        gap: 30px; /* Riduce un po' lo spazio tra un articolo e l'altro su mobile */
+    }
 }
 
-/* 3. L'immagine ora segue la larghezza della colonna */
-
-
-/* 4. Togliamo margini strani al testo per sicurezza */
-.fp-brand, .fp-title, .fp-desc {
-    margin-left: 0 !important;
-    width: 100%;
-}
-
-/* 1. Sottolinea il titolo quando passi il mouse sull'immagine */
-.all-section img:hover ~ .fp-title {
-    text-decoration: underline !important;
-    text-underline-offset: 3px;
-    color: rgb(255, 255, 255, 0.85); /* Opzionale: scurisce leggermente il titolo */
-}
-
-/* 2. Sottolinea il titolo nel momento esatto in cui CLICCHI sull'immagine */
-.all-section img:active ~ .fp-title {
-    text-decoration: underline !important;
-    text-underline-offset: 3px;
-}
 /* Sezione Verde "Managing Your Money" */
 .managing-money-section {
     background-color: #00711A; /* Il verde esatto dello screenshot */
@@ -1474,7 +1470,7 @@ a.text-white:hover .video-title {
 .collegamento-articolo-intero:active .titolo-laterale {
     text-decoration: underline;
     text-decoration-thickness: 3px; /* Spessore della riga */
-    text-decoration-color: #b5b5b5; /* Grigio CBS */
+    text-decoration-color: #777777; /* Grigio CBS */
     text-underline-offset: 4px; /* Distanza della riga dal testo */
 }
 
