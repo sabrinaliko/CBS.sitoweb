@@ -1,185 +1,203 @@
-/* --- GESTIONE DROPDOWN E "PONTE INVISIBILE" --- */
-
-    @media (max-width: 1028px) {
-        .top-navbar .navbar-nav {
-            display: none;
-        }
-
-        .menu-toggle {
-            display: flex;
-        }
-    }
-    .menu-toggle {
-        display: none;
-    }
-
-    @media (max-width: 1028px) {
-        .position-absolute.top-50.start-50.translate-middle {
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    }
-/* --- GESTIONE DROPDOWN E "PONTE INVISIBILE" --- */
-@media all and (min-width: 800px) {
-    .custom-dropdown{
-        position: relative;
-    }
-
-    .custom-dropdown .dropdown-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        margin-top: 10px;
-
-        border-radius: 4px;
-        border: 1px solid #eaeaea;
-        padding: 10px;
-        min-width: 360px; /* Leggermente allargato per accomodare i nuovi margini */
-        column-count: 2;
-        column-gap: 0;
-    }
-
-    .custom-dropdown .dropdown-menu::before {
-        content: "";
-        position: absolute;
-        top: -10px;
-        left: 0;
-        width: 100%;
-        height: 10px;
-        background-color: transparent;
-    }
-
-    /* LA FRECCINA A VIGNETTA */
-    .custom-dropdown .dropdown-menu::after {
-        content: "";
-        position: absolute;
-        top: -6px;
-        left: 15px; /* Allineamento sotto il bottone */
-        width: 10px;
-        height: 10px;
-        background-color: #fff;
-        border-top: 1px solid #eaeaea;
-        border-left: 1px solid #eaeaea;
-        transform: rotate(45deg);
-        z-index: 10;
-    }
-
-    .custom-dropdown:hover .dropdown-menu {
-        display: block;
-    }
-}
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #101010;
     font-weight: 400;
     font-size: 16px;
-    padding-top: 70px;
 }
-
-header {
-    font-family: 'Arial', serif;
-}
-
-/* Applica un font sans-serif pulito alla navbar come su CBS News */
-.top-navbar {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.95rem;
-}
-
-/* Stili degli elementi del sottomenu */
-.custom-dropdown .dropdown-menu li {
-    break-inside: avoid-column; /* Evita che un elemento venga diviso tra le due colonne */
-}
-
-.custom-dropdown .dropdown-item {
-    display: block;
+.wrapper {
     width: 100%;
-    padding: 8px 16px 8px 24px;
-    color: #333;
-    font-size: 1rem;
-    border-radius: 5px;
+    background-color: #fff;
+    max-width: 1400px;
 }
 
-.custom-dropdown .dropdown-item:hover {
-    text-decoration: underline; /* Aggiunge la sottolineatura al passaggio del mouse, tipico dei siti di news */
-}
-
-/* --- HOVER PER LA NAVBAR PRINCIPALE --- */
-.top-navbar .nav-link {
-    border-radius: 5px;
-    padding: 6px 0 !important;
-}
-
-.top-navbar .nav-item:hover .nav-link {
-    background-color: #e9ecef;
-}
-
-/* --- HOVER PER GLI ELEMENTI DEL MENU A TENDINA --- */
-.custom-dropdown .dropdown-item {
-    padding: 6px 0 6px 0; /* Spazio interno per far vedere il riquadro */
-    color: #333;
-    font-size: 0.85rem;
-    border-radius: 5px; /* Bordi arrotondati come in foto */
-}
-
-/* Sostituisce la sottolineatura precedente con lo sfondo grigino */
-.custom-dropdown .dropdown-item:hover {
-    background-color: #e9ecef !important; /* Grigino di sfondo al passaggio del mouse */
-    text-decoration: none; /* Rimuove l'eventuale sottolineatura */
-}
-.sub-nav {
-    border-top: 1px solid #e9ecef;
-    border-bottom: 1px solid #e9ecef;
-    background-color: #ffffff;
-
-}
-.top-navbar .nav-link {
-    font-weight: 700 !important; /* 600 è Semi-Bold, 700 è Bold. Molto meglio di 800! */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Font di sistema più moderni e puliti */
-    letter-spacing: -0.2px; /* Avvicina impercettibilmente le lettere, tipico delle testate giornalistiche */
-    -webkit-font-smoothing: antialiased; /* Rende il grassetto molto più nitido su schermi moderni */
-    -moz-osx-font-smoothing: grayscale;
-}
-.sub-nav-list {
-    list-style: none;
-    margin:0;
-    display:flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: nowrap;
-    padding: 0 0 0 10px;
-}
-.sub-nav-list li {
-    list-style: none;
-    margin: 0;
-    padding:0;
-}
-.sub-nav-link {
+/* --- AGGIORNAMENTO HOVER LINK (Sostituisce il vecchio text-decoration: underline) --- */
+.nav-link {
+    color: #000;
     text-decoration: none;
-    color: #5f6368;
-    font-size: 15px;
-    font-weight: 500;
     white-space: nowrap;
-    padding: 6px 10px;
-    border-radius: 5px;
+    padding: 8px 12px; /* Dà volume al link per fare spazio allo sfondo grigio */
+    border-radius: 6px; /* Bordo arrotondato come in foto */
+    transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #E9E9E9;
+}
+
+/* --- HEADER SUPERIORE --- */
+.main-nav .nav-link {
+    font-weight: 700;
+    font-size: 0.9rem; /* Testo leggermente più grande e in grassetto come l'originale */
+}
+
+.icon-small {
+    font-size: 0.75rem;
+    -webkit-text-stroke: 1px;
+}
+
+.red-dot {
     display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #d32f2f;
+    border-radius: 50%;
+    margin-right: 6px;
 }
-.sub-nav-link:hover {
-    color: #111;
+
+/* Simulazione del Logo */
+.logo-circle {
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.search-btn:hover {
+    color: #555 !important;
+}
+
+/* --- HEADER INFERIORE --- */
+.secondary-nav .nav-link {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #333;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+/* Nasconde la antiestetica barra di scorrimento orizzontale su schermi piccoli per la navbar inferiore */
+.secondary-nav::-webkit-scrollbar {
+    display: none;
+}
+.secondary-nav {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* --- LOGICA DEL MENU A TENDINA (DROPDOWN) --- */
+
+/* Il contenitore wrapper usa il padding-top per creare il "ponte" invisibile */
+.dropdown-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 12px; /* Questo crea lo spazio visivo ma mantiene l'area cliccabile/hoverable! */
+    display: none;
+    z-index: 1050;
+}
+
+/* Mostra il menu quando si passa sopra all'elemento padre */
+.nav-item-container:hover .dropdown-wrapper {
+    display: block;
+}
+
+/* Il vero contenitore visibile del menu */
+.dropdown-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Ombra morbida */
+    position: relative;
+    border: 1px solid #eaeaea;
+}
+
+/* IL TRIANGOLO (Fumetto) */
+/* Usa i bordi trasparenti per creare un triangolo rivolto verso l'alto */
+.dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: -8px; /* Lo fa sporgere fuori dal contenitore */
+    left: 20px; /* Posiziona il triangolo in linea con il testo del menu */
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff; /* Stesso colore dello sfondo del menu */
+    /* Crea un piccolo bordo grigio per fondersi con il bordo del contenitore */
+    filter: drop-shadow(0 -1px 1px rgba(0,0,0,0.05));
+}
+
+/* --- STILI INTERNI AL MENU --- */
+
+/* Struttura a griglia (es. Local News con le città) */
+.dropdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 30px; /* Spazio tra le righe e le colonne */
+    padding: 15px;
+    min-width: 340px; /* Abbastanza largo per due colonne */
+}
+
+/* Struttura a colonna singola (per menu più semplici) */
+.dropdown-single-column {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    min-width: 180px;
+    gap: 4px;
+}
+
+/* Le singole voci dentro il menu */
+.dropdown-item-custom {
+    display: block;
+    color: #333;
     text-decoration: none;
-    background-color:#e9ecef;
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    font-weight: 400;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
 }
-.sub-nav .container-fluid{
-    padding-left:20px;
-    padding-right:20px;
+
+.dropdown-item-custom:hover {
+    background-color: #E9E9E9;
+    color: #000;
 }
-.navbar-toggler {
-    border: none;
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 0.9rem;
 }
-.offcanvas.offcanvas-start {
-    width: 80%;
-    max-width: 500px;
+
+/* --- STILI MENU OFFCANVAS --- */
+.mobile-menu-link {
+    text-decoration: none;
+    color: #333333; /* Colore grigio scuro/nero */
+    font-size: 0.95rem; /* Grandezza simile all'originale */
+    transition: color 0.2s ease;
+}
+
+.mobile-menu-link:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+/* Rimuove il fastidioso contorno blu dalla X quando ci clicchi */
+.offcanvas-header .btn-close:focus {
+    box-shadow: none;
+}
+
+/* Modifica la larghezza del menu mobile */
+#mobileMenu {
+    --bs-offcanvas-width: 300px; /* Puoi abbassare questo valore a 280px o 250px se lo vuoi ancora più stretto */
+}
+
+.mobile-menu-titles {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    font-size: 0.85rem;
+}
+
+.mobile-menu-links {
+    text-decoration: none;
+    color: #000000;
+    font-size: 0.7rem;
 }
 
 .menu-columns {
@@ -222,11 +240,6 @@ header {
     background-color: #ffffff;
 }
 
-.top-stories {
-    margin-top: 5px;
-    padding: 0;
-}
-
 .news-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -234,7 +247,7 @@ header {
     align-items: start;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 0px;
+    padding: 40px 0;
 }
 
 .main-story-img {
@@ -254,7 +267,7 @@ header {
     font-size: 12px;
     font-weight: 700;
     border-radius: 4px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 
@@ -277,12 +290,6 @@ header {
     margin: 0 0 10px 0;
 }
 
-.side-story-time {
-    font-size: 13px;
-    letter-spacing: 1.4px;
-    color: #8a8a8a;
-    margin: 0;
-}
 .more:hover {
     text-decoration: underline;
     color: #666666;
@@ -381,6 +388,57 @@ header {
         padding: 20px 16px;
     }
 }
+
+/* --- REGOLE BASE PER LE COLONNE (se non le hai già) --- */
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Spazio verticale tra i vari link */
+}
+
+/* --- REGOLE PER IL MOBILE (Schermi sotto i 768px) --- */
+@media (max-width: 767px) {
+    .page-wrapper {
+        padding-left: 0; !important;
+        padding-right: 0; !important;
+    }
+
+    /* Mette tutto in una singola colonna verticale */
+    .footer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-left: 0;  /* <-- Rimuove eventuale spazio extra a sinistra del menu */
+        padding-right: 0; /* <-- Rimuove eventuale spazio extra a destra del menu */
+    }
+
+    .page-wrapper, .footer-content {
+        padding-left: 15px !important;  /* Lascia solo un piccolo margine per non far toccare il testo ai bordi del telefono */
+        padding-right: 15px !important;
+        width: 100%; /* Assicura che prenda tutto lo spazio */
+    }
+
+    /* Aggiunge il bordo inferiore e un po' di spazio per far respirare il testo */
+    .footer-col {
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 1.5rem;
+        margin-left: 0;   /* <-- Azzera margini laterali */
+        margin-right: 0;  /* <-- Azzera margini laterali */
+    }
+
+    /* Piccola chicca: toglie il bordo all'ultima colonna per non averlo attaccato al copyright */
+    .footer-col:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    /* (Opzionale) Centra il logo e il copyright su mobile */
+    .footer-logo, .copyright {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+}
+
 .menu-columns ul {
     columns: 2;
     list-style: none;
@@ -399,72 +457,12 @@ header {
     font-size: 15px;
 }
 
-.mobile-menu-list li {
-    break-inside: avoid;
-    margin-bottom: 18px;
-}
-
-.offcanvas-header {
-    height: 72px;
-    border-bottom: 1px solid #e5e5e5;
-    padding: 0 22px;
-}
-
-.offcanvas-title {
-    font-size: 16px;
-    font-weight: 800;
-}
-
-.btn-close {
-    order: -1;
-    margin-right: 18px;
-}
-
-.offcanvas-body {
-    padding: 28px 32px;
-}
-
-.offcanvas-body h6 {
-    font-size: 16px;
-    font-weight: 800;
-    margin: 0 0 20px;
-}
-
-.mobile-menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 24px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 80px;
-    row-gap: 10px;
-    column-count: 2;
-}
-
-.mobile-menu-list li {
-    break-inside: avoid;
-    margin-bottom: 8px;
-}
-
-.mobile-menu-list a {
-    text-decoration: none;
-    font-size: 13px;       /* 👈 più piccolo */
-    font-weight: 400;      /* 👈 non bold */
-    color: #5f6368;        /* 👈 grigio CBS */
-    line-height: 1.3;
-
-}
-.topic-section {
-    border-top: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
-}
-
 .section-title {
-    font-family: Georgia, serif;
-    font-size: 2.2rem;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 3.5rem;
     font-weight: 900;
     letter-spacing: -0.5px;
-    color: #000;
+    color: #ffffff;
     margin-bottom: 0;
 }
 
@@ -552,67 +550,38 @@ header {
     font-weight: bold;
 }
 
-/* --- MAIN STORY (Colonna di sinistra) --- */
-.main-story-img {
-    object-fit: cover;
-    aspect-ratio: 4 / 3; /* Mantiene proporzioni coerenti per le due immagini grandi */
-}
-
-.main-story-title {
-    font-family: "Georgia", "Times New Roman", serif;
-    font-size: 2.2rem;
-    line-height: 1.1;
-    font-weight: bold;
-}
-
 /* --- SIDE STORIES (Colonna di destra) --- */
 .side-story-img {
     object-fit: cover;
     aspect-ratio: 1 / 1; /* Rende le miniature laterali perfettamente quadrate */
 }
 
-.side-story-title {
+a .side-story-title {
     font-family: "Georgia", "Times New Roman", serif;
     font-size: 1.1rem;
     line-height: 1.3;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    text-decoration: none;
 }
 
 
-.side-story-title a:hover {
+a .side-story-title:hover {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
-
-/* Classe specifica per replicare la sottolineatura di default del primo articolo */
-.side-story-title a.underlined-link {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.side-story-time {
-    color: #6c757d; /* Grigio secondario */
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-top: auto; /* Spinge l'orario in fondo al contenitore flex */
-    margin-bottom: 0;
-}
-/* --- MAIN STORY (Colonna di sinistra) --- */
-/* Aggiunge una transizione fluida per il cambio colore */
 
 
 /* Effetto quando passi il mouse (:hover) e quando clicchi (:active) */
-.main-story-title a:hover,
-.main-story-title a:active {
+a.main-story-title:hover,
+a.main-story-title:active {
     color: #777777; /* Grigio più chiaro */
     text-decoration: underline;
 }
 
 /* Effetto quando passi il mouse (:hover) e quando clicchi (:active) */
-.side-story-title a:hover,
-.side-story-title a:active {
+a.side-story-title :hover,
+a.side-story-title :active {
     color: #777777; /* Grigio più chiaro */
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -638,8 +607,8 @@ header {
     transition: color 0.2s ease;
 }
 
-.story-title-bottom a:hover,
-.story-title-bottom a:active {
+a.story-title-bottom:hover,
+a.story-title-bottom :active {
     color: #777777; /* Effetto grigio al click/hover impostato prima */
     text-decoration: underline;
 }
@@ -676,6 +645,7 @@ header {
     font-weight: bold;
     color: #000;
     transition: color 0.2s ease;
+    text-decoration:none;
 }
 
 /* --- SIDE STORIES (Colonna di destra) --- */
@@ -683,17 +653,6 @@ header {
     object-fit: cover;
     aspect-ratio: 1 / 1;
 }
-
-.side-story-title {
-    font-family: "Georgia", "Times New Roman", serif;
-    font-size: 1.1rem;
-    line-height: 1.3;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #000;
-    transition: color 0.2s ease;
-}
-
 
 
 .side-story-time {
@@ -711,15 +670,14 @@ a.side-story-link {
 }
 
 /* 2. Assicura che i titoli abbiano una transizione fluida del colore */
-.main-story-title,
 .side-story-title,
 .story-title-bottom {
     transition: color 0.2s ease;
 }
 
 /* 3. Quando passi il mouse sull'articolo (il link), il titolo diventa grigio e si sottolinea */
-a.side-story-link:hover .main-story-title,
-a.side-story-link:active .main-story-title,
+a.side-story-link:hover,
+a.side-story-link:active,
 a.side-story-link:hover .side-story-title,
 a.side-story-link:active .side-story-title,
 a.side-story-link:hover .story-title-bottom,
@@ -729,13 +687,43 @@ a.side-story-link:active .story-title-bottom {
     text-underline-offset: 3px;
 }
 
+
+/* 1. Prepariamo le transizioni fluide */
+.main-story-title, .main-story-img {
+    transition: all 0.2s ease-in-out;
+}
+
+/* 2. Quando l'utente passa il mouse (hover) o clicca (active/focus) OVUNQUE sul link (immagine inclusa)... */
+.main-story a:hover .main-story-title,
+.main-story a:active .main-story-title,
+.main-story a:focus .main-story-title {
+    text-decoration: underline !important;
+    color: #777777 !important; /* Metti qui il colore che preferisci */
+}
+
+/* 3. BONUS: Scuriamo leggermente l'immagine quando ci passi sopra o la clicchi */
+.main-story a:hover .main-story-img,
+.main-story a:active .main-story-img {
+    opacity: 0.85;
+}
+.text-l {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Applichiamo l'hover DIRETTAMENTE alla classe */
+.text-l:hover,
+.text-l:active,
+.text-l:focus {
+    text-decoration: underline !important;
+    color: #777777 !important; /* Grigio chiaro */
+}
 /* --- REGOLAZIONE SPAZIO TRA LE SEZIONI --- */
 
 /* --- FIX PER LO SPAZIO IMMENSO TRA LE SEZIONI --- */
 
 /* 1. Togliamo l'enorme spinta verso il basso della prima sezione */
 section.top-stories {
-    margin-bottom: 5rem !important;
+    margin-bottom: 3rem !important;
 }
 
 /* 2. Togliamo l'enorme spinta verso l'alto della sezione successiva */
@@ -846,7 +834,7 @@ section.top-stories + section.container {
 .fp-desc {
     font-size: 1rem;
     line-height: 1.4;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     color: #ffffff;
 }
 
@@ -857,6 +845,7 @@ section.top-stories + section.container {
     opacity: 0.8; /* Rende la data un po' più tenue */
     margin-bottom: 0;
     color: #ffffff;
+    margin-top:0 !important;
 }
 /* Il titolo di base è bianco e senza sottolineatura */
 
@@ -913,13 +902,24 @@ section.top-stories + section.container {
     margin-left: 0 !important;
     width: 100%;
 }
+
+/* 1. Sottolinea il titolo quando passi il mouse sull'immagine */
+.all-section img:hover ~ .fp-title {
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+    color: rgb(255, 255, 255, 0.85); /* Opzionale: scurisce leggermente il titolo */
+}
+
+/* 2. Sottolinea il titolo nel momento esatto in cui CLICCHI sull'immagine */
+.all-section img:active ~ .fp-title {
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+}
 /* Sezione Verde "Managing Your Money" */
 .managing-money-section {
     background-color: #00711A; /* Il verde esatto dello screenshot */
     color: white;
     width: 100%;
-    padding-top: 60px;
-    padding-bottom: 60px;
 }
 
 /* Titolo della sezione con il link "More" */
@@ -983,7 +983,7 @@ section.top-stories + section.container {
     margin-bottom: 15px;
     display: block;
     object-fit: cover; /* Assicura che l'immagine non si deformi se viene allargata */
-    }
+}
 
 .main-title {
     font-size: 1.1rem;
@@ -1074,7 +1074,7 @@ section.top-stories + section.container {
     text-transform: uppercase;
 }
 
-.article-desc a{
+.article-desc {
     font-size: 1.05rem;
     line-height: 1.4;
     text-decoration: none;
@@ -1089,6 +1089,7 @@ section.top-stories + section.container {
     text-transform: uppercase;
     display: block;
 }
+
 
 .related-link {
     font-size: 1.05rem;
@@ -1112,7 +1113,9 @@ section.top-stories + section.container {
     text-decoration-thickness: 2px; /* Opzionale: rende la riga un po' più marcata */
     text-underline-offset: 4px; /* Opzionale: distanzia la riga dal testo */
 }
-
+.timestamp a:hover {
+    text-decoration: none;
+}
 /* Quando clicchi fisicamente sul titolo (ACTIVE) */
 .article-title a:active {
     color: #ffffff; /* Rimane bianco puro durante il click */
@@ -1176,7 +1179,7 @@ section.top-stories + section.container {
 
 .video-live-indicator {
     font-size: 0.85rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 .thumbnail-title {
     font-family: Georgia, 'Times New Roman', serif;
@@ -1242,6 +1245,13 @@ section.top-stories + section.container {
     text-decoration: underline;
     color: rgba(255, 255, 255, 0.85) !important;
 }
+
+/* Quando passi il mouse sull'intero link (immagine compresa), cambia il titolo */
+a.text-white:hover .video-title {
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
 .video-meta{
     font-size: 12px;
 }
@@ -1279,7 +1289,7 @@ section.top-stories + section.container {
 .promoted-card .source-text {
     font-size: 0.65rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 /* Stile per i bottoni "Scopri di più" */
@@ -1312,7 +1322,7 @@ section.top-stories + section.container {
     background-color: #cc0000; /* Rosso CBS */
     border: 1px solid #cc0000;
     font-size: 0.85rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     padding: 10px 20px;
     border-radius: 4px 0 0 4px !important; /* Arrotonda solo a sinistra */
 }
@@ -1396,7 +1406,7 @@ section.top-stories + section.container {
         height: 50px; /* Più sottili su mobile */
     }
 }
-<!-- sezione money -->
+
 /* =========================================
    SEZIONE NOTIZIE FINANZA (Stile CBS)
    ========================================= */
@@ -1407,6 +1417,7 @@ section.top-stories + section.container {
     font-weight: 900;
     letter-spacing: -1px; /* Stringe leggermente le lettere */
     color: #000;
+    font-size:3rem;
 }
 
 .link-vedi-tutto {
@@ -1415,7 +1426,7 @@ section.top-stories + section.container {
     font-weight: bold;
     color: #000;
     text-decoration: none;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 .link-vedi-tutto:hover {
@@ -1474,6 +1485,93 @@ section.top-stories + section.container {
     font-weight: 700;
     color: #000;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     display: block;
+}
+.section-title-first{
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #111111;
+    margin-bottom: 0;
+}
+a.article-desc .timestamp .related-link{
+    text-decoration: none;
+}
+a.article-desc .timestamp:hover{
+    text-decoration:none; !important
+}
+a.article-title{
+    margin-top:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.logo span {
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem) !important;
+}
+
+.logo img {
+    height: clamp(0.9rem, 1.6vw, 1.15rem) !important;
+}
+
+/* Stile fedele al Badge "EXCLUSIVE" di CBS */
+.cbs-badge {
+    background-color: #f1f1f1; /* Grigio molto chiaro */
+    color: #000; /* Testo nero */
+    font-size: 0.75rem; /* Testo piccolo */
+    font-weight: 700; /* Grassetto */
+    letter-spacing: 1px; /* Leggermente spaziato */
+    padding: 3px 8px; /* Spazio interno attorno al testo */
+    text-transform: uppercase;
+}
+
+/* Transizioni per l'animazione fluida */
+.article-card .article-title,
+.article-card img {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Quando passi il mouse sopra la card (immagine o testo) */
+.article-card:hover .article-title,
+.article-card:active .article-title {
+    text-decoration: underline !important;
+    color: #777777!important; /* Metti il tuo colore preferito per il link qui, o togli la riga se vuoi che resti nero */
+}
+
+/* Effetto di scurimento dell'immagine (opzionale ma consigliato) */
+.article-card:hover img,
+.article-card:active img {
+    opacity: 0.85;
+}
+
+.side-story-title-first{
+    font-family: "Georgia", serif;
+    font-size: 1rem;
+    font-weight: 800;
+
+}
+.more-link-1{
+    color:#111111 !important;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left:15px;
+}
+.more-link-1:hover{
+    text-decoration: underline;
+    color:#777777;
+
 }
